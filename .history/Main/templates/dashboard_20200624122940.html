@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Tripy Dashboard</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Welcome, {{user.first_name}}!</h1>
+    <button type="submit">
+    <a href="logout">Logout</a>
+    </button>
+    <button type="submit">
+    <a href="newtrip">Create a New Trip!</a>
+    </button>
+    <h3>Your Trips:</h3>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Destination</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Plan</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for trip in trips %}
+        {{trips.destination}}
+        {% endfor %}
+        <tr>
+            <td>{{trip.destination}}<a href="/trip/{{trip.id}}"></a></td>
+            <td>{{trip.start_date}}</td>
+            <td>{{trip.end_date}}</td>
+            <td>{{trip.plan}}</td>
+            <td>
+                <a href="/jobs_info/{{job.id}}">View |</a>
+                {% if job.createdBy.id == request.session.userid %}
+                <a href="/jobs/edit/{{job.id}}">Edit |</a>
+                <a href="/jobs/remove/{{job.id}}">Remove</a>
+
+                {% endif %}
+            </td>
+        </tr>
+        
+      
+      </tbody>
+    </table>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
